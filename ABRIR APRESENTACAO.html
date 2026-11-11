@@ -47,9 +47,10 @@
 </div>
 
 <script>
-// Cada trecho (00 a 14) é uma fala da diretora. O corte fica no meio da pausa entre
-// uma fala e outra; o trecho termina parado no último quadro até o próximo espaço.
-const TOTAL = 15;
+// Cada trecho (00 a 35) é uma fala. As telas pretas do vídeo original (que marcavam
+// a troca de fala) foram removidas: cada trecho termina parado no último quadro da fala,
+// sem tela preta, até o próximo espaço.
+const TOTAL = 36;
 const EMENDA = new Set();          // paradas que não param: o trecho seguinte entra sozinho
 const FIM = TOTAL;                 // parada depois do último trecho: vídeo acabou
 const FADE_MS = 450;               // dissolve das setas
