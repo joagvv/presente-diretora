@@ -1,16 +1,17 @@
 # O presente da diretora
 
 Site que mostra só o vídeo, em tela inteira, sem nada na frente: sem botões,
-sem pausas. O vídeo toca do começo ao fim (2:35) e para no último quadro.
+sem pausas. Começa quando aperta espaço, toca do começo ao fim (2:35) e para
+no último quadro.
 
 **Online:** https://joagvv.github.io/presente-diretora/
 
 ## Como usar
 
-Abra o link (ou o `index.html`, se for rodar sem internet). Os navegadores só
-deixam um site tocar vídeo com som depois que a pessoa interage com a página.
-Então, se o vídeo não começar sozinho, é só clicar, tocar na tela ou apertar
-qualquer tecla: ele começa e entra em tela cheia.
+Abra o link (ou o `index.html`, se for rodar sem internet). O vídeo **não**
+começa sozinho: fica parado no primeiro quadro até você apertar **espaço**.
+Aí ele entra em tela cheia e toca até o fim, sem pausas (apertar espaço de novo
+não pausa) e para no último quadro.
 
 ## Rodar sem internet
 

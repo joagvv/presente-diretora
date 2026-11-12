@@ -11,29 +11,33 @@
 </style>
 </head>
 <body>
-<video id="v" src="video.mp4" autoplay playsinline preload="auto"></video>
+<video id="v" src="video.mp4#t=0.001" playsinline preload="auto"></video>
 <script>
-// Só o vídeo, sem nada na frente: toca do começo ao fim, sem pausas, e para no último quadro.
-// Os navegadores só deixam tocar com som depois de um clique ou tecla; se o autoplay
-// for bloqueado, o primeiro clique, toque ou tecla começa o vídeo (e entra em tela cheia).
+// Só o vídeo, sem nada na frente. Ao abrir, fica parado no primeiro quadro.
+// O vídeo só começa quando aperta ESPAÇO; depois toca até o fim sem pausas
+// (outros espaços, cliques e teclas não fazem nada) e para no último quadro.
 const v = document.getElementById('v');
 v.controls = false;
+v.autoplay = false;
+let comecou = false;
 
 function tela_cheia() {
   const el = document.documentElement;
-  if (document.fullscreenElement) return;
-  try { (el.requestFullscreen || el.webkitRequestFullscreen).call(el).catch?.(() => {}); } catch (e) {}
+  if (document.fullscreenElement || document.webkitFullscreenElement) return;
+  try {
+    const r = (el.requestFullscreen || el.webkitRequestFullscreen).call(el);
+    if (r && r.catch) r.catch(() => {});
+  } catch (e) {}
 }
 
-function comecar() {
+document.addEventListener('keydown', e => {
+  if (e.code !== 'Space' && e.key !== ' ') return;
+  e.preventDefault();
+  if (comecou) return;
+  comecou = true;
   tela_cheia();
-  if (v.paused && !v.ended) v.play().catch(() => {});
-}
-
-v.play().catch(() => {});   // tenta tocar sozinho (com som); se não der, espera um clique/tecla
-document.addEventListener('click', comecar);
-document.addEventListener('touchend', comecar);
-document.addEventListener('keydown', comecar);
+  v.play().catch(() => { comecou = false; });
+});
 v.addEventListener('contextmenu', e => e.preventDefault());
 </script>
 </body>
